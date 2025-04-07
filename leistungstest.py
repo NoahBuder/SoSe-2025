@@ -30,3 +30,5 @@ if experiments:
     display_experiments(experiments)
     even_count = count_even_ids(experiments)
     print("Anzahl der Experimente mit gerader ID: {even_count}")
+
+    #Numpy installiert
