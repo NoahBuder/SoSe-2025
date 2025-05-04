@@ -1,34 +1,59 @@
-import random
-from datetime import date
-from typing import List, Dict, Union
-Names = ["Anna", "Ben", "Clara", "Justin", "Noah", "David", "Elena", "Felix", "Gina", "Hannes"]
-def create_experiments(first_experiment_id: Union[int, str, float]) -> List[Dict[str, Union[int]]]:
-    experiments = []
-    today = date.today().isoformat()
+from typing import Dict
+
+first_experiment_id = []
+
+creation_date = "13.03.2025"
+
+namen = ("Noah", "Justin", "Jonathan", "Samuel", "Moritz", "Niklas", "Mappelmann", "Olivia", "Julius", "Magnus" )
+
+supervisor = "Alex"
+
+ 
+
+def validate_id(Id_Nummer:int) -> bool:
+
     try:
-        first_experiment_id = int(first_experiment_id)
-    except ValueError:
-        print("Fehler: Die ID muss eine ganze Zahl sein.")
-        return[]
-    for i in range(10):
-        experiment = {
-            "id": first_experiment_id + i,
-            "Name": random.choice(Names),
-            "Datum": today}
-        experiments.append(experiment)
-    return experiments
-def display_experiments(experiments: List[Dict[str, Union[int, str]]]) -> None:
-    print("Erste Zehn Experimente:")
-    for experiment in experiments[:10]:
-        print(experiment)
-def count_even_ids(experiments: List[Dict[str, Union[int]]]) -> int:
-    return sum(1 for exp in experiments if exp["id"] % 2==0)
-first_experiment_id = input("Geben Sie die Start ID ein: ")
-experiments = create_experiments(first_experiment_id)
 
-if experiments:
-    display_experiments(experiments)
-    even_count = count_even_ids(experiments)
-    print("Anzahl der Experimente mit gerader ID: {even_count}")
+        int(Id_Nummer)
 
-    #Numpy installiert
+        return True
+
+    except:
+
+        print ("Id_Nummer muss eine ganze Zahl sein und im Bereich  von 1 bis 10 liegen")
+
+        return False
+
+ 
+
+for i in range(1, 11):
+
+    if validate_id(i):
+
+        experiment: Dict[str, object] = {
+
+            "supervisor": supervisor,
+
+            "creation-date": creation_date,
+
+            "Id_Nummer": i,
+
+            "Name": namen[i-1]
+
+        }
+
+ 
+
+        first_experiment_id.append(experiment)
+
+for Experiment in first_experiment_id:
+
+    if Experiment["Id_Nummer"] > 5:
+
+            break
+
+    print(Experiment)
+
+gerade_id = sum(Id_Nummer % 2 == 0 for Id_Nummer in range(1, 11))
+
+print("Die Anzahl der geraden Nummern von der Liste Beträgt:", gerade_id)
